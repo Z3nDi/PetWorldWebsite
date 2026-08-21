@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Віддам котика в хороші руки — PetWorld</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Кольори з головної сторінки */
+    --brown: #5C3A21;
+    --brown-dark: #4A2E19;
+    --yellow: #F3C24B;
+    --yellow-dark: #E8A93A;
+    --green: #2E8B4F;
+    --ink: #2B2B2B;
+    --muted: #7A7A7A;
+    --page-bg: #FAFAF8;
+    --border: #E2E2E2;
+    --light-bg: #FFF8E8; /* Світло-жовтий фон для блоків */
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;}
+  body{
+    font-family:'Nunito Sans','Nunito',sans-serif;
+    color:var(--ink);
+    background:var(--page-bg);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  h1,h2,h3{font-family:'Nunito',sans-serif;margin:0;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  /* ---------- decorative paw prints ---------- */
+  .paw-deco{
+    position:absolute;
+    opacity:0.15;
+    color:var(--yellow);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: #ffffff; /* Однаковий білий фон */
+    border-bottom: 1px solid #E2E2E2; /* Акуратна роздільна лінія знизу */
+    padding: 18px 32px; /* Задає однакову висоту на всіх сторінках */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%; /* Розтягується на всю ширину */
+    max-width: 1240px; /* Суворе обмеження ширини для ідеального збігу */
+    margin: 0 auto; /* Центрування на великих екранах */
+  }
+  .logo-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .paw-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px; /* Заокруглені кути квадрата */
+    background: var(--yellow);
+    color: var(--brown-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-pill img{
+    width:42px;height:42px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#fff;
+  } 
+  .header-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .logo .mark{
+    width:42px;height:42px;
+    border-radius:12px;
+    background:var(--yellow);
+    color:var(--brown-dark);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .logo-text .name {
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--brown);
+    line-height: 1.1;
+  }
+  .logo-text .tagline {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+  .logo .text .sub{
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:700;
+  }
+nav.top-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    border:none;border-radius:10px;padding:11px 20px;
+    font-weight:700;font-size:14px;white-space:nowrap;
+  }
+  .btn-outline{background:#fff;color:var(--brown-dark);border:2px solid var(--yellow);}
+  .btn-solid{background:var(--yellow);color:var(--brown-dark);}
+  .btn-solid:hover{background:var(--yellow-dark);}
+  .btn-outline:hover{background:#FFF8E8;}
+  .user-icon{
+    width:40px;height:40px;border-radius:50%;border:2px solid #d9d9d9;
+    display:flex;align-items:center;justify-content:center;color:var(--brown);flex-shrink:0;
+  }
+  .user-icon:hover{background:#FFF8E8;border-color:var(--yellow);}
+  .header-nav{
+    flex:1;
+    display:flex;
+    justify-content:center;
+  }
+  .header-nav a{
+    font-weight:700;
+    font-size:15px;
+    color:var(--ink);
+  }
+
+  .header-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+  .add-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--yellow);
+    color:var(--brown-dark);
+    border:none;
+    border-radius:10px;
+    padding:11px 20px;
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+  }
+  .add-btn:hover{background:var(--yellow-dark);}
+  .user-chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:700;
+    font-size:14px;
+  }
+  .user-chip .avatar{
+    width:32px;height:32px;
+    border-radius:50%;
+    background:var(--light-bg);
+    color:var(--brown);
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ---------- MAIN ---------- */
+  main{
+    flex:1;
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    padding:44px 32px 70px;
+    position:relative;
+  }
+
+  .listing{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+  }
+
+  /* gallery */
+  .gallery{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:16px;
+  }
+  .thumbs{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .thumbs img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:10px;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:border-color .15s;
+  }
+  .thumbs img:hover{border-color:var(--yellow);}
+  .main-photo{
+    position:relative;
+    border-radius:14px;
+    overflow:hidden;
+    background:#ddd;
+  }
+  .main-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    aspect-ratio:1/1;
+  }
+  .photo-count{
+    position:absolute;
+    right:12px;
+    bottom:12px;
+    background:rgba(0,0,0,0.55);
+    color:#fff;
+    border-radius:8px;
+    width:34px;height:34px;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* description box */
+  .description{
+    margin-top:34px;
+    position:relative;
+  }
+  .description h2{
+    text-align:center;
+    font-size:20px;
+    font-weight:800;
+    color:var(--brown);
+    padding-bottom:8px;
+    border-bottom:3px solid var(--yellow);
+    display:inline-block;
+    margin-bottom:18px;
+  }
+  .description-heading-wrap{
+    text-align:center;
+  }
+  .description-box{
+    background:var(--light-bg);
+    border-radius:16px;
+    padding:26px 28px;
+    font-size:14.5px;
+    line-height:1.7;
+    color:var(--ink);
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* right column */
+  .info-title{
+    font-size:26px;
+    font-weight:800;
+    color:var(--brown);
+    margin-bottom:10px;
+  }
+  .price-tag{
+    display:inline-block;
+    font-weight:800;
+    font-size:16px;
+    color:var(--green);
+    padding-bottom:6px;
+    border-bottom:2px solid var(--green);
+    margin-bottom:24px;
+  }
+
+  .spec-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-bottom:30px;
+  }
+  .spec-row{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    font-size:14.5px;
+  }
+  .spec-row .label{
+    color:var(--muted);
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .spec-row .leader{
+    flex:1;
+    border-bottom:2px dotted #c9c6d4;
+    height:0;
+    transform:translateY(-4px);
+  }
+  .spec-row .value{
+    font-weight:700;
+    white-space:nowrap;
+  }
+
+  .section-heading{
+    font-size:16px;
+    font-weight:800;
+    color:var(--brown);
+    padding-bottom:6px;
+    border-bottom:2px solid var(--yellow);
+    display:inline-block;
+    margin-bottom:14px;
+  }
+
+  .features{
+    list-style:none;
+    margin:0 0 30px;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .features li{
+    position:relative;
+    padding-left:18px;
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--ink);
+  }
+  .features li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:9px;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--yellow);
+  }
+  .features li b{color:var(--brown-dark);}
+
+  .contact-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:15px;
+    color:var(--brown-dark);
+  }
+  .contact-row svg{color:var(--yellow-dark); flex-shrink:0;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:#22252A;
+    color:#fff;
+    padding:30px 32px 20px;
+  }
+  .footer-wrap{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .footer-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .footer-logo .mark{
+    width:38px;height:38px;
+    background:var(--yellow);
+    color:var(--brown-dark);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .footer-logo .name{font-weight:800;font-size:18px;}
+  .footer-logo .sub{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#B8BCC2;font-weight:700;}
+  .footer-contacts .h{font-weight:700;margin-bottom:4px;}
+  .footer-contacts a{color:#9FD3F0;}
+  .footer-copy{
+    text-align:center;
+    font-size:12px;
+    color:#9A9AA2;
+    margin-top:22px;
+  }
+  .footer-copy a{color:#9FD3F0;text-decoration:underline;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .listing{grid-template-columns:1fr;gap:36px;}
+    .header-nav{display:none;}
+  }
+  @media (max-width:560px){
+    .gallery{grid-template-columns:70px 1fr;}
+    .header-inner{padding:14px 18px;}
+    .add-btn span.long{display:none;}
+    .footer-wrap{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="petworld.html" class="logo-pill">
+    <div class="paw-logo">
+      <!-- SVG-іконка лапки -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="7" cy="6" r="2.2"/>
+        <circle cx="12" cy="4" r="2.2"/>
+        <circle cx="17" cy="6" r="2.2"/>
+        <circle cx="19.5" cy="11" r="2"/>
+        <path d="M12 10c-3.8 0-6.8 2.9-6.8 6 0 2.4 2 4 4.4 3.4.8-.2 1.7-.2 2.5 0 2.4.6 4.4-1 4.4-3.4 0-3.1-3-6-4.5-6z"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <div class="name">Pet World</div>
+      <div class="tagline">пошук друга</div>
+    </div>
+  </a>
+  <nav class="top-actions">
+    <a href="listings.html" class="btn btn-outline">Оголошення</a>
+    <a href="post-ad.html" class="btn btn-solid">Розмістити Оголошення</a>
+    <a href="profile.html" class="user-icon" aria-label="Профіль">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+      </svg>
+    </a>
+  </nav>
+</header>
+
+<main>
+  <svg class="paw-deco" style="top:10px; right:0; width:90px; height:90px;" viewBox="0 0 24 24" fill="currentColor">
+    <circle cx="7" cy="6" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="17" cy="6" r="2"/><circle cx="19" cy="11" r="1.8"/>
+    <path d="M12 10c-3.6 0-6.4 2.7-6.4 5.6 0 2.3 1.9 3.9 4.2 3.3.8-.2 1.6-.2 2.4 0 2.3.6 4.2-1 4.2-3.3 0-2.9-2.8-5.6-4.4-5.6z"/>
+  </svg>
+  <svg class="paw-deco" style="bottom:0; left:0; width:60px; height:60px;" viewBox="0 0 24 24" fill="currentColor">
+    <circle cx="7" cy="6" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="17" cy="6" r="2"/><circle cx="19" cy="11" r="1.8"/>
+    <path d="M12 10c-3.6 0-6.4 2.7-6.4 5.6 0 2.3 1.9 3.9 4.2 3.3.8-.2 1.6-.2 2.4 0 2.3.6 4.2-1 4.2-3.3 0-2.9-2.8-5.6-4.4-5.6z"/>
+  </svg>
+
+  <div class="listing">
+
+    <!-- LEFT: gallery + description -->
+    <div class="listing-left">
+      <div class="gallery">
+        <div class="thumbs">
+          <img src="img/IMG_0423.JPG" alt="Фото кота 1" onclick="document.getElementById('mainPhoto').src=this.src">
+          <img src="img/IMG_0275.JPG" alt="Фото кота 2" onclick="document.getElementById('mainPhoto').src=this.src">
+          <img src="img/IMG_0172.JPG" alt="Фото кота 3" onclick="document.getElementById('mainPhoto').src=this.src">
+        </div>
+        <div class="main-photo">
+          <img id="mainPhoto" src="img/IMG_0078.JPG" alt="Том — головне фото">
+          <span class="photo-count">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <circle cx="12" cy="12" r="3.5"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="description">
+        <div class="description-heading-wrap">
+          <h2>Опис</h2>
+        </div>
+        <div class="description-box">
+          Має перемінний характер, що робить його надзвичайно цікавим та непередбачуваним. У Тома є два настрої: іноді він справжня грайлива ракета, яка бігає, стрибає та з радістю ганяється за іграшками. Але бувають моменти, коли перетворюється на короля, якому потрібен спокій і комфорт. У такі дні любить усамітнитися або просто спостерігати за тим, що відбувається навколо.
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: info -->
+    <div class="listing-right">
+      <h1 class="info-title">Віддам котика в хороші руки</h1>
+      <span class="price-tag">Безкоштовно</span>
+
+      <div class="spec-list">
+        <div class="spec-row">
+          <span class="label">Вік:</span>
+          <span class="leader"></span>
+          <span class="value">2 роки</span>
+        </div>
+        <div class="spec-row">
+          <span class="label">Ім'я:</span>
+          <span class="leader"></span>
+          <span class="value">Том</span>
+        </div>
+        <div class="spec-row">
+          <span class="label">Стать:</span>
+          <span class="leader"></span>
+          <span class="value">Хлопчик</span>
+        </div>
+        <div class="spec-row">
+          <span class="label">Тип вовни:</span>
+          <span class="leader"></span>
+          <span class="value">Довгошерстий</span>
+        </div>
+        <div class="spec-row">
+          <span class="label">Вага:</span>
+          <span class="leader"></span>
+          <span class="value">4.55 кг</span>
+        </div>
+      </div>
+
+      <span class="section-heading">Особливості:</span>
+      <ul class="features">
+        <li><b>Перемінний настрій:</b> може бути як грайливим та активним, так і лагідним, коли потребує вашої уваги або навпаки — спокою.</li>
+        <li><b>Незалежний, але прив'язується:</b> любить увагу, але цінує свій особистий простір. Якщо ви поважатимете його особливості, він обов'язково стане вашим вірним другом.</li>
+        <li><b>Здоровий та доглянутий:</b> має всі необхідні щеплення, є ветеринарний паспорт.</li>
+      </ul>
+
+      <span class="section-heading">Контактна інформація:</span>
+      <div class="contact-row">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.1z"/>
+        </svg>
+        Телефон: +38 (XXX) XXX-XX-XX
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-logo">
+      <span class="mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="7" cy="6" r="2.2"/><circle cx="12" cy="4" r="2.2"/><circle cx="17" cy="6" r="2.2"/><circle cx="19.5" cy="11" r="2"/>
+          <path d="M12 10c-3.8 0-6.8 2.9-6.8 6 0 2.4 2 4 4.4 3.4.8-.2 1.7-.2 2.5 0 2.4.6 4.4-1 4.4-3.4 0-3.1-3-6-4.5-6z"/>
+        </svg>
+      </span>
+      <div>
+        <div class="name">Pet World</div>
+        <div class="sub">пошук друга</div>
+      </div>
+    </div>
+    <div class="footer-contacts">
+      <div class="h">Контакти</div>
+      <a href="mailto:support@petworld.pet">support@petworld.pet</a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    Copyright 2024 | <a href="#">Політика конфіденційності</a>
+  </div>
+</footer>
+
+</body>
+</html>

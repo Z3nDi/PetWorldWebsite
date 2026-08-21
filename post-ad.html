@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Розмістити оголошення — PetWorld</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brown: #5C3A21;
+    --brown-dark: #4A2E19;
+    --yellow: #F3C24B;
+    --yellow-dark: #E8A93A;
+    --navy: #2C4A5E;
+    --ink: #2B2B2B;
+    --muted: #7A7A7A;
+    --page-bg: #FAFAF8;
+  }
+  *{box-sizing:border-box;}
+html,body{margin:0;padding:0;height:100%;}
+body{
+  font-family:'Nunito Sans','Nunito',sans-serif;
+  color:var(--ink);
+  background:var(--page-bg);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+  h1{font-family:'Nunito',sans-serif;margin:0;}
+  a{text-decoration:none;color:inherit;}
+
+  header {
+    background: #ffffff; /* Однаковий білий фон */
+    border-bottom: 1px solid #E2E2E2; /* Акуратна роздільна лінія знизу */
+    padding: 18px 32px; /* Задає однакову висоту на всіх сторінках */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%; /* Розтягується на всю ширину */
+    max-width: 1240px; /* Суворе обмеження ширини для ідеального збігу */
+    margin: 0 auto; /* Центрування на великих екранах */
+  }
+  .logo-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .paw-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px; /* Заокруглені кути квадрата */
+    background: var(--yellow);
+    color: var(--brown-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-pill img{
+    width:42px;height:42px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#fff;
+  }
+  .logo-text .name {
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--brown);
+    line-height: 1.1;
+  }
+  .logo-text .tagline {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    border:none;border-radius:10px;padding:11px 20px;
+    font-weight:700;font-size:14px;white-space:nowrap;
+  }
+  .btn-outline{background:#fff;color:var(--brown-dark);border:2px solid var(--yellow);}
+  .btn-solid{background:var(--yellow);color:var(--brown-dark);}
+  .btn-solid:hover{background:var(--yellow-dark);}
+  .btn-outline:hover{background:#FFF8E8;}
+  .user-icon{
+    width:40px;height:40px;border-radius:50%;border:2px solid #d9d9d9;
+    display:flex;align-items:center;justify-content:center;color:var(--brown);flex-shrink:0;
+  }
+  .user-icon:hover{background:#FFF8E8;border-color:var(--yellow);}
+
+  main{
+  flex:1;
+  width:100%;
+  max-width:1240px;
+  margin:0 auto;
+  padding:60px 32px 100px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  }
+  main h1{font-size:32px;color:var(--brown);margin-bottom:14px;}
+  main p{color:var(--muted);font-size:15px;max-width:520px;margin:0 auto;}
+
+  footer{background:#22252A;color:#fff;padding:30px 32px;margin-top:40px;}
+  .footer-wrap{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+  .footer-logo{display:flex;align-items:center;gap:12px;}
+  .footer-logo .paw{width:38px;height:38px;background:var(--yellow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+  .footer-logo .name{font-weight:800;font-size:18px;}
+  .footer-logo .sub{font-size:11px;color:#B8BCC2;}
+  .footer-contacts .h{font-weight:700;margin-bottom:4px;}
+  .footer-contacts a{color:#9FD3F0;}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="petworld.html" class="logo-pill">
+    <div class="paw-logo">
+      <!-- SVG-іконка лапки -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="7" cy="6" r="2.2"/>
+        <circle cx="12" cy="4" r="2.2"/>
+        <circle cx="17" cy="6" r="2.2"/>
+        <circle cx="19.5" cy="11" r="2"/>
+        <path d="M12 10c-3.8 0-6.8 2.9-6.8 6 0 2.4 2 4 4.4 3.4.8-.2 1.7-.2 2.5 0 2.4.6 4.4-1 4.4-3.4 0-3.1-3-6-4.5-6z"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <div class="name">Pet World</div>
+      <div class="tagline">пошук друга</div>
+    </div>
+  </a>
+  <nav class="top-actions" style="display:flex;align-items:center;gap:14px;">
+    <a href="listings.html" class="btn btn-outline">Оголошення</a>
+    <a href="post-ad.html" class="btn btn-solid">Розмістити Оголошення</a>
+    <a href="profile.html" class="user-icon" aria-label="Профіль">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+      </svg>
+    </a>
+  </nav>
+</header>
+
+<main>
+  <h1>Розмістити оголошення</h1>
+  <p>Тут буде форма для розміщення нового оголошення про тварину: фото, опис, вид, вік, локація та ціна. Сторінка в розробці.</p>
+</main>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-logo">
+      <div class="paw">🐾</div>
+      <div>
+        <div class="name">PetWorld</div>
+        <div class="sub">Тварини – твої друзі</div>
+      </div>
+    </div>
+    <div class="footer-contacts">
+      <div class="h">Контакти</div>
+      <a href="mailto:support@petworld.pet">support@petworld.pet</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
