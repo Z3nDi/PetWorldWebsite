@@ -11,3 +11,5 @@
 * Динамічними формами та випадаючими списками
 * сітками (CSS Grid / Flexbox)
 * Клікабельними картками та галереями зображень
+<img width="1897" height="901" alt="image" src="https://github.com/user-attachments/assets/120a5dfc-2d1b-4440-a54f-067a2512483b" />
+
